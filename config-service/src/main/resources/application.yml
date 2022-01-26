@@ -1,0 +1,33 @@
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        encrypt:
+          enabled: false
+        native:
+#          serch-locations: file:///${user.home}/
+          search-locations: file:///C:/development/msa_inflearn/e-commerce/git_local_repo
+#        git:
+#          uri: file:///C:/development/msa_inflearn_git_local_repo
+#          uri: git clone url ex) https://github.com/.../spring-cloud-config
+#          username: [your username]
+#          password: [your password]
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,busrefresh
