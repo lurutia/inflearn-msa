@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,9 @@ public class UsersController {
         return String.format("It's Working in User Service"
                 + ", port(local.server.port)=" + env.getProperty("local.server.port")
                 + ", port(server.port)=" + env.getProperty("server.port")
+                + ", with location=" + env.getProperty("location")
+                + ", with location2=" + env.getProperty("location2")
+                + ", with location3=" + env.getProperty("location3")
                 + ", with token secret=" + env.getProperty("token.secret")
                 + ", with token time=" + env.getProperty("token.expiration_time"));
     }
@@ -73,7 +77,7 @@ public class UsersController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping(value = "/users/{userId}")
+    @GetMapping(value = "/users/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId) {
         UserDto userDto = userService.getUserByUserId(userId);
         ResponseUser returnValue = new ModelMapper().map(userDto, ResponseUser.class);

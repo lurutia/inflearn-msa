@@ -42,15 +42,6 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
-    @GetMapping(value = "/{orderId}/orders")
-    public ResponseEntity<ResponseOrder> getOrderById(@PathVariable("orderId") String orderId) {
-        OrderDto orderDto = ordersService.getOrderByOrderId(orderId);
-        ModelMapper modelMapper = new ModelMapper();
-        ResponseOrder result = modelMapper.map(orderDto, ResponseOrder.class);
-
-        return ResponseEntity.ok().body(result);
-    }
-
     @GetMapping(value = "/{userId}/orders")
     public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId) {
         Iterable<OrderEntity> orderList = ordersService.getOrdersByUserId(userId);
