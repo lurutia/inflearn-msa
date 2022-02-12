@@ -13,5 +13,3 @@ gateway:
 
 order_service:
   url: http://ORDER-SERVICE/order-service/%s/orders
-
-location2: 123

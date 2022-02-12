@@ -1,6 +1,0 @@
-token:
-  expiration_time: 864000000
-  secret: '{cipher}AQAXtolFwpIbPic+svESwz3YhPZtmtS3H/0uwFCPvAQJfAf1FsaUutSPvjJOgyMQKkLF92SiGo4ol/iZg0OXmegTsuQma2Vf2AyieUUjwvflz1z0ponxp5fsKTCsx3wKyY+7tgm9ZZq7cMQbJ9TlpZjuPViKrhYtic0JfwqfRFTyecGBr73iHRb5RGpq2+UeP49F8cI85LTNXoJzBbT4ItrlMo/0BfnDZZiRG1GjdNGGv5lhlyvMANHOht762A+A2JTdxnRhTRbsR9U2rCVwXwdD5e5L2DG+8oo0TF3tjeUyojzUj62EHoxKLk5/c3QNTSOawQ9K/lNYAUL2MYHmMLdjDaqGyCaoYeOmon4SDjjfv9uUEXZxBPPWPpsUP1l1WRZuTw2KmrEVPCvwV0gKwtZA'
-
-gateway:
-  ip: 8888888888
