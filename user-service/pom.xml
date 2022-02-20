@@ -110,7 +110,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-circuitbreaker-resilience4j -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
 
 	</dependencies>
 	<dependencyManagement>
