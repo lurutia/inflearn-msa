@@ -6,6 +6,7 @@ import com.example.orderservice.order.dto.OrderDto;
 import com.example.orderservice.order.dto.RequestOrder;
 import com.example.orderservice.order.dto.ResponseOrder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
@@ -22,6 +23,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/order-service")
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
     private final OrdersService ordersService;
@@ -36,6 +38,7 @@ public class OrderController {
 
     @PostMapping(value = "/{userId}/orders")
     public ResponseEntity<ResponseOrder> createOrder(@PathVariable("userId") String userId, @RequestBody RequestOrder orderDetails) {
+        log.info("Before add orders data");
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
@@ -55,17 +58,28 @@ public class OrderController {
         kafkaProducer.send("example-catalog-topic", orderDto);
         orderProducer.send("orders", orderDto);
 
+        log.info("After add orders data");
+
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
     @GetMapping(value = "/{userId}/orders")
-    public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId) {
+    public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId) throws Exception {
+        log.info("Before retrieve orders data");
         Iterable<OrderEntity> orderList = ordersService.getOrdersByUserId(userId);
+
+        try {
+            Thread.sleep(1000);
+            throw new Exception("장애 발생");
+        } catch(InterruptedException e) {
+            log.warn(e.getMessage());
+        }
 
         List<ResponseOrder> result = new ArrayList<>();
         orderList.forEach(v -> {
             result.add(new ModelMapper().map(v, ResponseOrder.class));
         });
+        log.info("After retrieve orders data");
 
         return ResponseEntity.ok().body(result);
     }
