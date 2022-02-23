@@ -26,12 +26,11 @@ spring:
       server:
         encrypt:
           enabled: false
-        native:
-#          serch-locations: file:///${user.home}/
-
-
-          search-locations: file:///C:/development/msa_inflearn/e-commerce/git_local_repo
-#        git:
+#        native:
+#          search-locations: file:///${user.home}/
+#          search-locations: file:///C:/development/msa_inflearn/e-commerce/git_local_repo
+        git:
+          uri: https://github.com/lurutia/msa_config.git
 #          uri: file:///C:/development/msa_inflearn_git_local_repo
 #          uri: git clone url ex) https://github.com/.../spring-cloud-config
 #          username: [your username]
