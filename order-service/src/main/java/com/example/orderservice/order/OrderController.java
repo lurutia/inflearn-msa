@@ -12,7 +12,6 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/order-service")
 @RequiredArgsConstructor
 @Slf4j
@@ -31,7 +30,7 @@ public class OrderController {
     private final KafkaProducer kafkaProducer;
     private final OrderProducer orderProducer;
 
-    @GetMapping("/health_check")
+    @GetMapping(value = "/health_check")
     public String status(HttpServletRequest request) {
         return String.format("It's Working in Order Service on Port %s", request.getServerPort());
     }

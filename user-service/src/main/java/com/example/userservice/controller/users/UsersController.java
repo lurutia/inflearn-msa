@@ -4,6 +4,7 @@ import com.example.userservice.controller.users.dto.RequestUser;
 import com.example.userservice.controller.users.dto.ResponseUser;
 import com.example.userservice.controller.users.dto.UserDto;
 import com.example.userservice.infra.Greeting;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,6 +31,7 @@ public class UsersController {
     private final UserService userService;
 
     @GetMapping("/health_check")
+    @Timed(value="users.status", longTask = true)
     public String status() {
         return String.format("It's Working in User Service"
                 + ", port(local.server.port)=" + env.getProperty("local.server.port")
@@ -39,6 +41,7 @@ public class UsersController {
     }
 
     @GetMapping("/welcome")
+    @Timed(value = "users.welcome", longTask = true)
     public String welcome(HttpSession session, @RequestHeader Map<String, Object> requestHeader) {
 //        log.info(session.getAttribute("session1").toString());
         for (String key : requestHeader.keySet()) {

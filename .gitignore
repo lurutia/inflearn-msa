@@ -1,0 +1,6 @@
+catalog-service/run.sh
+config-service/run.sh
+ecommerce/run.sh
+gateway-service/run.sh
+order-service/run.sh
+user-service/run.sh
