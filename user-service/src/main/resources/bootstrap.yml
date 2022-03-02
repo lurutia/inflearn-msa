@@ -1,16 +1,16 @@
 spring:
   cloud:
     config:
-      discovery:
-        enabled: true
-        service-id: CONFIG-SERVICE
+#      discovery:
+#        enabled: true
+#        service-id: CONFIG-SERVICE
       fail-fast: true
       retry:
         initialInterval: 3000
         multiplier: 1.3
         maxInterval: 10000
         maxAttempts: 20
-#      uri: http://127.0.0.1:8888
+      uri: http://127.0.0.1:8888
       name: user-service
   profiles:
     active: dev

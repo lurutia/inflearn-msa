@@ -67,12 +67,12 @@ public class OrderController {
         log.info("Before retrieve orders data");
         Iterable<OrderEntity> orderList = ordersService.getOrdersByUserId(userId);
 
-        try {
-            Thread.sleep(1000);
-            throw new Exception("장애 발생");
-        } catch(InterruptedException e) {
-            log.warn(e.getMessage());
-        }
+//        try {
+//            Thread.sleep(1000);
+//            throw new Exception("장애 발생");
+//        } catch(InterruptedException e) {
+//            log.warn(e.getMessage());
+//        }
 
         List<ResponseOrder> result = new ArrayList<>();
         orderList.forEach(v -> {
